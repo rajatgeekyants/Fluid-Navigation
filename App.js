@@ -2,58 +2,12 @@ import React, {Component} from 'react';
 import {View, Text, Button, Image, StyleSheet} from 'react-native';
 import {StackNavigator} from 'react-navigation';
 import {FluidNavigator, Transition} from 'react-navigation-fluid-transitions';
+import Screen1 from './src/screens/Screen1';
+import Screen2 from './src/screens/Screen2';
 
-const LogoImage = props => (
-  <Image
-    source={{uri: 'https://picsum.photos/100/100?image=56'}}
-    style={props.style}
-  />
+export const LogoImage = props => (
+  <Image source={props.source} style={props.style} />
 );
-
-class Screen1 extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Transition shared="logo">
-          <LogoImage style={styles.largeLogo} />
-        </Transition>
-        <Transition appear="horizontal">
-          <Text style={styles.paragraph}>Welcome to this great app!</Text>
-        </Transition>
-        <Button
-          title="Next"
-          onPress={() => this.props.navigation.navigate('screen2')}
-        />
-      </View>
-    );
-  }
-}
-
-class Screen2 extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Transition shared="logo">
-          <LogoImage style={styles.smallLogo} />
-        </Transition>
-        <Transition appear="horizontal">
-          <Text style={styles.paragraph}>
-            <Text style={{fontWeight: 'normal'}}>
-              Now you should have a basic understanding of how this app works.
-              Please sign up and take part in this fantastic user experience!
-            </Text>
-          </Text>
-        </Transition>
-        <Transition appear="horizontal">
-          <Text style={styles.paragraph}>
-            This is the last page of onboarding!
-          </Text>
-        </Transition>
-        <Button title="Back" onPress={() => this.props.navigation.goBack()} />
-      </View>
-    );
-  }
-}
 
 const Navigator = FluidNavigator({
   screen1: {screen: Screen1},
